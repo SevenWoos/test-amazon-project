@@ -46,12 +46,44 @@ products.forEach((product) => {
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary">
+      <button class="add-to-cart-button button-primary js-add-to-cart" 
+        data-product-id="${product.id}">
         Add to Cart
       </button>
     </div>
   `;
 });
 
+// Data Attribute has to start with data and be separated with dashes(kebab style)
+
 document.querySelector('.js-products-grid')
   .innerHTML = productsHTML;
+
+document.querySelectorAll('.js-add-to-cart')
+  .forEach((button) => {
+    button.addEventListener('click', () => {
+      // The kebab case gets CONVERTED to CAMEL CASE
+      const productId = button.dataset.productId;
+
+      // Check for duplicate items so we can increase quantity
+      let matchingItem;
+
+      cart.forEach((item) => {
+        if(productId === item.productId) {
+          matchingItem = item;
+        }
+      });
+
+      // If we find a matching duplicate item, just increase the quantity, instead of adding it again to the cart.
+      if(matchingItem) {
+        matchingItem.quantity += 1;
+      } else {
+        cart.push({
+          productId: productId, 
+          quantity: 1
+        })
+      }
+
+      console.log(cart);
+    });
+});
