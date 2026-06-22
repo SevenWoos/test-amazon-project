@@ -102,5 +102,7 @@ document.querySelectorAll('.js-add-to-cart')
         .innerHTML = cartQuantity;
 
       const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
+
+      addedMessage.classList.add('added-to-cart-visible');
     });
 });
