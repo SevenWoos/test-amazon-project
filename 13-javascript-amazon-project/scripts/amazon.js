@@ -62,8 +62,10 @@ document.querySelector('.js-products-grid')
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
-      // The kebab case gets CONVERTED to CAMEL CASE
-      const productId = button.dataset.productId;
+      // The kebab case gets CONVERTED to CAMEL CASE.
+      // Use shorthand destructuring.
+      // const productId = button.dataset.productId;
+      const {productId} = button.dataset;
 
       // Check for duplicate items so we can increase quantity
       let matchingItem;
