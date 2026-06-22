@@ -81,9 +81,19 @@ document.querySelectorAll('.js-add-to-cart')
         cart.push({
           productId: productId, 
           quantity: 1
-        })
+        });
       }
 
-      console.log(cart);
+      // Loop through total cart quantities.
+      let cartQuantity = 0;
+
+      cart.forEach((item) => {
+        cartQuantity += item.quantity;
+      });
+
+      console.log(cartQuantity);
+
+      document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity;
     });
 });
