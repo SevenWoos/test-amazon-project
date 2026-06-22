@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 let productsHTML = ``;
@@ -62,41 +62,29 @@ products.forEach((product) => {
 document.querySelector('.js-products-grid')
   .innerHTML = productsHTML;
 
+
+function updateCartQuantity() {
+  // Loop through total cart quantities.
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  console.log(cartQuantity);
+
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity;
+};
+
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
       // The kebab case gets CONVERTED to CAMEL CASE
       const productId = button.dataset.productId;
 
-      // Check for duplicate items so we can increase quantity
-      let matchingItem;
+      addToCart(productId);
 
-      cart.forEach((item) => {
-        if(productId === item.productId) {
-          matchingItem = item;
-        }
-      });
-
-      // If we find a matching duplicate item, just increase the quantity, instead of adding it again to the cart.
-      if(matchingItem) {
-        matchingItem.quantity += 1;
-      } else {
-        cart.push({
-          productId: productId, 
-          quantity: 1
-        });
-      }
-
-      // Loop through total cart quantities.
-      let cartQuantity = 0;
-
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
-
-      console.log(cartQuantity);
-
-      document.querySelector('.js-cart-quantity')
-        .innerHTML = cartQuantity;
+      updateCartQuantity();
     });
 });
