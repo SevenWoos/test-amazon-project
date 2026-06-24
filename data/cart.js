@@ -36,6 +36,8 @@ export function addToCart(productId) {
     }
   });
 
+  const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
+
   // If we find a matching duplicate item, just increase the quantity, instead of adding it again to the cart.
   if(matchingItem) {
     matchingItem.quantity += 1;
