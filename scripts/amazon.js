@@ -82,7 +82,9 @@ document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
       // The kebab case gets CONVERTED to CAMEL CASE
-      const productId = button.dataset.productId;
+      // const productId = button.dataset.productId;
+      // Use shorthand destructuring.
+      const {productId} = button.dataset;
 
       addToCart(productId);
 
