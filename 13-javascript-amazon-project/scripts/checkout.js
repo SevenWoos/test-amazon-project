@@ -148,9 +148,9 @@ document.querySelectorAll('.js-save-link')
 
       const container = document.querySelector(`.js-cart-item-container-${productId}`);
       container.classList.remove('is-editing-quantity');
-    });
 
-    // 14k. Get the quantity from clicking save.  
-    const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
-    const newQuantity = Number(quantityInput.value);
+      // 14k. Get the quantity from clicking save.  
+      const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
+      const newQuantity = Number(quantityInput.value);
+    });
 });
