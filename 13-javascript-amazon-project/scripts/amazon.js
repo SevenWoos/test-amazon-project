@@ -71,13 +71,11 @@ function updateCartQuantity(productId) {
     cartQuantity += cartItem.quantity;
   });
 
-  console.log(cartQuantity);
-
   document.querySelector('.js-cart-quantity')
     .innerHTML = cartQuantity;
 
   const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
-
+  
   addedMessage.classList.add('added-to-cart-visible');
 
   setTimeout(() => {
@@ -107,4 +105,4 @@ function updatePageCartQuantity() {
     .innerHTML = cartQuantity;
 };
 
-updateCartQuantity();
+updatePageCartQuantity();
